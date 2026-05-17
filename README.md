@@ -1,6 +1,6 @@
 # NodeGet Orbit Deck Theme
 
-Version: `1.1.2`
+Version: `1.2.0`
 
 Orbit Deck 是一个为 NodeGet 探针系统设计的自定义主题。它通过 `custom.js` 接管前端运行时 UI，重新组织节点卡片、筛选、搜索、详情页、动态图表和延时曲线展示。
 
@@ -22,7 +22,9 @@ Orbit Deck 是一个为 NodeGet 探针系统设计的自定义主题。它通过
 ```text
 .
 ├── index.html              # 主题入口
-├── config.json             # NodeGet 后端连接配置
+├── config.json             # (向后兼容) 本地配置
+├── nodeget-theme.json      # NodeGet 主题规范元信息与默认配置
+├── nodeget-theme-files.json# 主题文件清单
 ├── custom.css              # Orbit Deck 样式
 ├── custom.js               # 主题运行时逻辑
 ├── os-icons.js             # 内联 Linux/系统 SVG 图标
@@ -42,21 +44,22 @@ Orbit Deck 是一个为 NodeGet 探针系统设计的自定义主题。它通过
 也可以自行重新打包：
 
 ```powershell
-Compress-Archive -Path README.md,index.html,config.json,custom.css,custom.js,os-icons.js,logo.png,assets,linux-logo-icon -DestinationPath NodeGet-OrbitDeck.zip -Force
+Compress-Archive -Path README.md,index.html,config.json,nodeget-theme.json,nodeget-theme-files.json,custom.css,custom.js,os-icons.js,logo.png,download.html,assets,linux-logo-icon -DestinationPath NodeGet-OrbitDeck.zip -Force
 ```
 
 ## 配置示例
 
 ```json
 {
-  "site_name": "Orbit Deck",
-  "site_logo": "",
-  "theme_name": "orbit-deck",
-  "theme_version": "1.1.2",
-  "theme_repo": "",
-  "theme_config": {
-    "version": "1.1.2",
-    "footer": "Orbit Deck for NodeGet"
+  "user_preferences": {
+    "site_name": "Orbit Deck",
+    "site_logo": "",
+    "footer": "Orbit Deck for NodeGet",
+    "dynamic_interval": 2,
+    "latency_interval": 30,
+    "history_limit": 60,
+    "latency_limit": 240,
+    "latency_window_mins": 30
   },
   "site_tokens": [
     {
